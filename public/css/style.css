@@ -12,7 +12,8 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
   background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(226,248,252,1) 100%); 
-  border-top: solid 30px#2b6693;
+  border-top: solid 5px#2b6693;
+  padding-top:60px;
 }
 
 a {
@@ -27,6 +28,22 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+}
+
+h1 {
+  display:none;
+}
+
+
+.thanks span {
+  font-size:120px;
+  display:block;
+  margin-bottom:20px;
+  text-align:center;
+}
+.thanks {
+  font-size:130%;
+  text-align:center;
 }
 
 /*--------------------------------------------------------------
@@ -138,7 +155,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
-  color: #2b6693;
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -365,6 +382,11 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   height: 45vh;
   padding-top:0;
+  text-align:justify;
+}
+
+#hero img {
+  float: right;
 }
 
 .main.highlight span {
@@ -456,11 +478,26 @@ h1, h2, h3, h4, h5, h6 {
   #hero .hero-img img {
     width: 50%;
   }
+  #hero img {
+    float:none;
+  }
 }
 
 @media (max-width: 768px) {
+  #header {
+    height:50px;
+  }
+
+  h1 {
+    display:block;
+  }
+
+  #hero img {
+    float:none;
+  }
+  
   #hero {
-    margin-top: 20px;
+    margin-top: -30px;
   }
   #hero h1 {
     font-size: 28px;
