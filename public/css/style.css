@@ -511,12 +511,20 @@ h1 {
   #hero .hero-img img {
     width: 70%;
   }
+
+  .main.highlight {
+    font-size:100%;
+  }
 }
 
 @media (max-width: 575px) {
   #hero .hero-img img {
     width: 80%;
-    margin-top:350px;
+    margin-top:550px;
+  }
+
+  .highlight {
+    height:400px;
   }
 }
 
