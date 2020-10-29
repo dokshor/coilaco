@@ -461,6 +461,7 @@ h1 {
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
+    padding-top:155px;
   }
 }
 
