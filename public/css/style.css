@@ -507,6 +507,7 @@ h1 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
+    height:1100px !important;
   }
   #hero .hero-img img {
     width: 70%;
@@ -527,10 +528,6 @@ h1 {
   #hero .hero-img img {
     width: 80%;
     margin-top:900px;
-  }
-
-  .highlight {
-    height:520px;
   }
 }
 
