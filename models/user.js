@@ -32,18 +32,12 @@ const User = sequelize.define('user', {
   serie: {
     type: Sequelize.STRING,
     unique: false,
-    allowNull: true,
-    validate: {
-      notEmpty: false,
-    },
+    allowNull: true
   },
   message: {
     type: Sequelize.TEXT,
     unique: false,
-    allowNull: true,
-    validate: {
-      notEmpty: true,
-    },
+    allowNull: true
   },
   created_at: {
     type: 'TIMESTAMP',
