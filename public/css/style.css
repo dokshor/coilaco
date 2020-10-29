@@ -517,14 +517,19 @@ h1 {
   }
 }
 
+@media (max-width: 370px) {
+  #hero .hero-img img {
+  }
+}
+
 @media (max-width: 575px) {
   #hero .hero-img img {
     width: 80%;
-    margin-top:550px;
+    margin-top:700px;
   }
 
   .highlight {
-    height:400px;
+    height:520px;
   }
 }
 
