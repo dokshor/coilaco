@@ -4,7 +4,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var cors = require('cors')
-const port = 3000;
+const port = 4000;
 
 app.use(cors())
 app.use(express.static('./public'));
@@ -27,7 +27,6 @@ app.get('/', async function(req, res) {
 });
 
 // Subscribers service
-
 app.get('/subscribers', async function(req, res) {
     var limit = 100;
     var offset = 0;
@@ -75,6 +74,7 @@ app.post('/subscribers', async function(req, res) {
     var dni = clean(req.body.dni);
     var phone = req.body.phone;
     var email  = req.body.email;
+    var serie = req.body.serie;
     var message = req.body.message;
     var exists_dni = await User.count({
         where: {
@@ -84,7 +84,7 @@ app.post('/subscribers', async function(req, res) {
 
     // We create the user only when the count is empty
     if(exists_dni == 0 && validate(dni)) {
-        user = await User.create({ fullname: fullname, dni: dni, phone: phone, email: email, message: message  });
+        user = await User.create({ fullname: fullname, dni: dni, phone: phone, email: email, serie: serie, message: message  });
         exists = false;
     }
     

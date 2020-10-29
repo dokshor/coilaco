@@ -227,6 +227,7 @@
         dni: $("#dni").val(),
         phone: $("#phone").val(),
         email: $("#email").val(),
+        serie: $("#serie option:selected").val(),
         message: $("#message").val()
       };
 

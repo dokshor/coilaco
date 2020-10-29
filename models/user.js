@@ -29,6 +29,14 @@ const User = sequelize.define('user', {
       notEmpty: true,
     },
   },
+  serie: {
+    type: Sequelize.STRING,
+    unique: false,
+    allowNull: true,
+    validate: {
+      notEmpty: false,
+    },
+  },
   message: {
     type: Sequelize.TEXT,
     unique: false,
