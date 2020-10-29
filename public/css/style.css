@@ -522,10 +522,6 @@ h1 {
 }
 
 @media (max-width: 575px) {
-
-  #hero {
-    height:900px;
-  }
   #hero .hero-img img {
     width: 80%;
     margin-top:250px;
