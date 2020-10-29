@@ -380,9 +380,10 @@ h1 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 45vh;
+  height: 100%;
   padding-top:0;
   text-align:justify;
+  display:block;
 }
 
 #hero img {
@@ -461,13 +462,12 @@ h1 {
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
-    padding-top:155px;
+    padding-top:150px;
   }
 }
 
 @media (max-width: 991px) {
   #hero {
-    height: 100vh;
   }
   #hero .animated {
     -webkit-animation: none;
@@ -478,6 +478,7 @@ h1 {
   }
   #hero .hero-img img {
     width: 50%;
+    margin-top:30px;
   }
   #hero img {
     float:none;
@@ -496,10 +497,7 @@ h1 {
   #hero img {
     float:none;
   }
-  
-  #hero {
-    margin-top: -30px;
-  }
+
   #hero h1 {
     font-size: 28px;
     line-height: 36px;
@@ -508,7 +506,6 @@ h1 {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 30px;
-    height:1400px !important;
   }
   #hero .hero-img img {
     width: 70%;
@@ -531,7 +528,7 @@ h1 {
   }
   #hero .hero-img img {
     width: 80%;
-    margin-top:1320px;
+    margin-top:1420px;
     
   }
 }
