@@ -51,6 +51,10 @@ h1 {
   display:block;
 }
 
+.birthday strong {
+  font-size:36px;
+}
+
 .thanks span {
   font-size:120px;
   display:block;
