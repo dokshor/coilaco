@@ -60,40 +60,50 @@
 
         <nav class="nav-menu d-none d-lg-block">
         <ul>
-            <li class="active"><a href="#hero" class="scrollto">Inicio</a></li>
-            <li><a href="/escuela-barrial-coilaco-2021" class="scrollto">Escuela 2021</a></li>
-            <li><a href="#problem" class="scrollto">Problemática</a></li>
-            <li class=""><a href="#about" class="scrollto">¿Por qué debería apoyar?</a></li>
-            <li class=""><a href="#contact" class="scrollto">Apóyanos con tu firma</a></li>
-            <li><a href="#users" class="scrollto">Listado de firmas</a></li>
+            <li><a href="/" class="scrollto">Inicio</a></li>
+            <li class="active"><a href="/escuela-barrial-coilaco-2021" class="scrollto">Escuela 2021</a></li>
+            <li><a href="/#problem" class="scrollto">Problemática</a></li>
+            <li class=""><a href="/#about" class="scrollto">¿Por qué debería apoyar?</a></li>
+            <li class=""><a href="/#contact" class="scrollto">Apóyanos con tu firma</a></li>
+            <li><a href="/#users" class="scrollto">Listado de firmas</a></li>
             <li><a href="https://www.facebook.com/100004313174414/videos/1680826142071142/" target="_blank">🎥 Microdocumental</a></li>
         </ul>
         </nav><!-- .nav-menu -->
     </div>
   </header>
-      
-  <!-- ======= Header ======= -->
-  <%- include('header.ejs') %>
-
-
-  <!-- ======= Problems ======= -->
-  <%- include('problem.ejs') %>
-
-  <!-- ======= Reasons ======= -->
-  <%- include('reasons.ejs') %>
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="inscriptions" class="contact">
       <div class="container">
 
         <div class="row">
           <div class="col-lg-8 col-md-12" data-aos="fade-up" data-aos-delay="300">
             <div class="section-title" data-aos="fade-up">
-                <h2>🤝  Apóyanos</h2>
-                <p>Completa el siguiente formulario para demostrarnos tu apoyo. Todos los campos son requeridos:</p>
+                <h2>⚽ Escuela Barrial Coilaco 2021</h2>
+                <img width="330" src="img/coilaco.jpg" class="img-fluid " alt="Club Deportivo Coilaco Temuco">
               </div>
+              <h3>Inicio de las clases</h3>
+              <p>Lunes 11 de enero del año 2021.</p>
 
-            <form action="/signup" method="post" role="form" id="signup" class="php-email-form">
+              <h3>Valor</h3>
+              <ul>
+                <li>Gratuito.</li>
+              </ul>
+
+              <h3>Restricciones</h3>
+                <ul>
+                    <li>Las clases serán impartidas por profesionales del área de la actividad física.</li>
+                    <li>20 Horas semanales.</li>
+                    <li>8 Semanas en total.</li>
+                    <li>10 personas por grupo.</li>
+                    <li>5 grupos.</li>
+                    <li>Mayores de 18 años (Covid-19).</li>
+                    <li>Se podrán elegir hasta 3 opciones de las disponibles.</li>
+                </ul>
+
+            <p>Completa el siguiente formulario para inscribirte en la Escuela Barrial Coilaco 2021. Todos los campos son requeridos:</p>
+
+            <form action="/inscriptions" method="post" role="form" id="inscriptions" class="php-email-form">
               <div class="form-group">
                 <input type="text" name="fullname" class="form-control" id="fullname" placeholder="Dejanos tu nombre completo" />
                 <div class="validate"></div>
@@ -112,32 +122,30 @@
               </div>
 
               <div class="form-group">
-                <select id="serie" class="form-control">
-                  <option value="">Seleccione una opción si quiere participar de alguna serie</option>
-                  <option value="Penecas">Penecas</option>
-                  <option value="Juvenil">Juvenil</option>
-                  <option value="Infantil">Infantil</option>
-                  <option value="Segunda">Segunda</option>
-                  <option value="Primera">Primera (Honor)</option>
-                  <option value="Senior">Senior</option>
-                  <option value="Super Senior">Super Senior</option>
-                  <option value="Master">Master</option>
+                <select id="player" class="form-control">
+                  <option value="">Seleccione el perfíl del postulante</option>
+                  <option value="Jugador">Jugador de cancha</option>
+                  <option value="Arquero">Arquero</option>
                 </select>
               </div>
 
-              <div class="form-group">
-                <textarea class="form-control" id="message" name="message" rows="5" required="required" placeholder="Ingresanos tu mensaje de apoyo"></textarea>
-                <div class="validate"></div>
+              <div class="form-group inscriptions-checkbox">
+                  <p><strong>Selecciona el o los horarios deseados: (Máximo 3)</strong></p>
+                  <%if (lunes <= 10) { %><p><label for="lunes"><input class="horario" id="lunes" type="checkbox" name="option" value="lunes"> Lunes 10:00 – 12:00 y 18:30 – 20:30 <small>Cupos disponibles <%= 10 - lunes %></small></label></p><% } %>
+                  <%if (martes <= 10) { %><p><label for="martes"><input class="horario" id="martes" type="checkbox" name="option" value="martes"> Martes 10:00 – 12:00 y 18:30 – 20:30 <small>Cupos disponibles <%= 10 - martes %></small></label></p><% } %>
+                  <%if (miercoles <= 10) { %><p><label for="miercoles"><input class="horario" id="miercoles" type="checkbox" name="option" value="miercoles"> Miércoles 10:00 – 12:00 y 18:30 – 20:30 <small>Cupos disponibles <%= 10 - miercoles %></small></label></p><% } %>
+                  <%if (jueves <= 10) { %><p><label for="jueves"><input class="horario" id="jueves" type="checkbox" name="option" value="jueves"> Jueves 10:00 – 12:00 y 18:30 – 20:30 <small>Cupos disponibles <%= 10 - jueves %></small></label></p><% } %>
+                  <%if (viernes <= 10) { %><p><label for="viernes"><input class="horario" id="viernes" type="checkbox" name="option" value="viernes"> Viernes 10:00 – 12:00 y 18:30 – 20:30 <small>Cupos disponibles <%= 10 - viernes %></small></label></p><% } %>
               </div>
-              <div class="text-center"><button type="submit">Danos tu apoyo</button></div>
+
+              <div class="text-center"><button type="submit">Deseo inscribirme</button></div>
             </form>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-
             <div class="info">
-
                 <br /><br />
+
                 <h3>¿Dudas, Consultas?</h3>
                 <br />
                 <div>
@@ -149,16 +157,21 @@
                   <i class="ri-mail-send-line"></i>
                   <p>cdcoilacotemuco@gmail.com</p>
                 </div>
-  
-                <div>
-                  <i class="ri-phone-line"></i>
-                  <p><a href="tel:+5699213 2541">+56 9 9213 2541</a></p>
-                </div>
-
+                
                 <div>
                   <i class="ri-phone-line"></i>
                   <p><a href="tel:+56947132182">+56 9 4713 2182</a></p>
                 </div>
+
+                <div>
+                    <i class="ri-phone-line"></i>
+                    <p><a href="tel:+56972996695">+56 9 7299 6695</a></p>
+                  </div>
+
+                  <div>
+                    <i class="ri-phone-line"></i>
+                    <p><a href="tel:+56977744806">+56 9 77744806</a></p>
+                  </div>
               </div>
               
               <div class="social-links">
@@ -166,20 +179,16 @@
                 <a href="https://www.instagram.com/cd_coilaco/" class="instagram" target="_blank"><i class="icofont-instagram"></i></a>
               </div>
 
+              <div style="text-align:center" >
+                <h3>Apoyado por</h3>
+                <p>Gobierno Regional de La Araucanía: FNDR</p>
+            </div>
+
           </div>
         </div>
         
       </div>
     </section><!-- End Contact Section -->
-
-    <section id="users" class="users">
-      <div class="container">
-        <div class="section-title" data-aos="fade-up">
-          <h2>🤟 Hemos recibido las siguientes firmas de apoyo</h2>
-        </div>
-
-        <div id="users-messages"></div>
-    </section>
 
   </main><!-- End #main -->
 

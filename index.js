@@ -28,6 +28,32 @@ app.get('/', async function(req, res) {
     res.render('pages/home', { counter: counter });
 });
 
+// Escuela Barrial 2021
+app.get('/escuela-barrial-coilaco-2021', async function(req, res) {
+    // I need to count how many signup we have
+    var lunes = await InscriptionOption.count({where: {
+        day: "lunes"
+     }});
+
+    var martes = await InscriptionOption.count({where: {
+        day: "martes"
+    }});
+
+    var miercoles = await InscriptionOption.count({where: {
+        day: "miercoles"
+    }});
+
+    var jueves = await InscriptionOption.count({where: {
+        day: "jueves"
+    }});
+
+    var viernes = await InscriptionOption.count({where: {
+        day: "viernes"
+    }});
+
+    res.render('pages/escuela-barrial-coilaco-2021', { lunes: lunes, martes: martes, miercoles: miercoles, jueves: jueves, viernes: viernes });
+});
+
 // Subscribers service
 app.get('/subscribers', async function(req, res) {
     var limit = 100;
@@ -68,7 +94,7 @@ app.get('/subscribers', async function(req, res) {
     res.json(users_to_display);
 });
 
-app.post('/subscribers', async function(req, res) {
+app.post('/subscribers-escuela', async function(req, res) {
     var user = null;
     var success = true;
     var exists = true;
@@ -92,6 +118,39 @@ app.post('/subscribers', async function(req, res) {
     
     res.json({
         user: user,
+        success: success,
+        exists: exists
+    });
+});
+
+app.post('/inscriptions', async function(req, res) {
+    var user = null;
+    var success = true;
+    var exists = true;
+    var fullname = req.body.fullname;
+    var dni = clean(req.body.dni);
+    var phone = req.body.phone;
+    var email  = req.body.email;
+    var player = req.body.player;
+    var options = req.body.options;
+    var exists_dni = await Inscription.count({
+        where: {
+            dni : dni
+        }
+    });
+
+    // We create the user only when the count is empty
+    if(exists_dni == 0 && validate(dni)) {
+        inscription = await Inscription.create({ fullname: fullname, dni: dni, phone: phone, email: email, player: player});
+
+        for(var i=0;i<options.length;i++) {
+            option = await InscriptionOption.create({ inscription_id: inscription.id, day: options[i] });
+        }
+
+        exists = false;
+    }
+    
+    res.json({
         success: success,
         exists: exists
     });

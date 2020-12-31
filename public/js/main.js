@@ -220,8 +220,72 @@
   }
   $(window).on('load', function() {
     aos_init();
-    $("#signup").on("submit", function(e) {
 
+    $(".horario").on("click", function(e) {
+      var max_values = 3;
+      
+      if($(".horario:checked").length > max_values) {
+        alert("Ya ha seleccionado el máximo de 3 opciones disponibles.");
+        e.preventDefault();
+      }
+
+    });
+
+    if($(".horario").length == 0) {
+      $("#inscriptions").html("<p class='thanks'><span>😔</span> Lamentarmos comunicarte que las inscripciones se encuentra cerradas. Los cupos ya fueron tomados.</p>");
+    }
+
+    $("#inscriptions").on("submit", function(e) {
+      var options = [];
+      var max_values = 3;
+
+      $(".horario:checked").each(function(i, obj) {
+        if(i < max_values) {
+          options[i] = $(obj).val();
+        }
+      });
+
+      var user = {
+        fullname: $("#fullname").val(),
+        dni: $("#dni").val(),
+        phone: $("#phone").val(),
+        email: $("#email").val(),
+        player: $("#player option:selected").val(),
+        options: options
+      };
+      
+      if(Fn.validaRut(user.dni)) {
+        if(options.length == 0) {
+          alert("Debe seleccionar a lo menos 1 horario de la Escuela Barrial Coilaco 2021");
+        } else {
+          $.ajax({
+            url: '/inscriptions',
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (data) {
+              console.log(data);
+                if(!data.success) {
+                  alert("Ha ocurrido un error ingresando su información. Verifiquela e intente nuevamente.");
+                } else if(data.exists) {
+                  alert("No hemos podido procesar tu solicitud ya que anteriormente hemos recibido tu postulación RUT especificado.");
+                } else {
+                  $("#inscriptions").html("<p class='thanks'><span>❤️</span>Gracias por querer ser parte de la Escuela Barrial 2021.</p>");
+                }
+            },
+            data: JSON.stringify(user)
+          });
+        }
+
+      } else {
+        alert("El RUT especificado no es valido. Verificalo e intenta nuevamente, por favor.");
+        $("#dni").focus();
+      }
+      
+      e.preventDefault();
+    });
+
+    $("#signup").on("submit", function(e) {
       var user = {
         fullname: $("#fullname").val(),
         dni: $("#dni").val(),
@@ -233,7 +297,7 @@
 
       if(Fn.validaRut(user.dni)) {
         $.ajax({
-          url: 'subscribers',
+          url: 'subscribers-escuela',
           type: 'post',
           dataType: 'json',
           contentType: 'application/json',
@@ -251,6 +315,7 @@
         });
       } else {
         alert("El RUT especificado no es valido. Verificalo e intenta nuevamente, por favor.");
+        $("#dni").focus();
       }
       
       e.preventDefault();
