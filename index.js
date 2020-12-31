@@ -31,27 +31,42 @@ app.get('/', async function(req, res) {
 // Escuela Barrial 2021
 app.get('/escuela-barrial-coilaco-2021', async function(req, res) {
     // I need to count how many signup we have
-    var lunes = await InscriptionOption.count({where: {
-        day: "lunes"
+    var lunes_manana = await InscriptionOption.count({where: {
+        day: "lunes_manana"
+     }});
+     var lunes_tarde = await InscriptionOption.count({where: {
+        day: "lunes_tarde"
      }});
 
-    var martes = await InscriptionOption.count({where: {
-        day: "martes"
+    var martes_manana = await InscriptionOption.count({where: {
+        day: "martes_manana"
+    }});
+    var martes_tarde = await InscriptionOption.count({where: {
+        day: "martes_tarde"
     }});
 
-    var miercoles = await InscriptionOption.count({where: {
-        day: "miercoles"
+    var miercoles_manana = await InscriptionOption.count({where: {
+        day: "miercoles_manana"
+    }});
+    var miercoles_tarde = await InscriptionOption.count({where: {
+        day: "miercoles_tarde"
     }});
 
-    var jueves = await InscriptionOption.count({where: {
-        day: "jueves"
+    var jueves_manana = await InscriptionOption.count({where: {
+        day: "jueves_manana"
+    }});
+    var jueves_tarde = await InscriptionOption.count({where: {
+        day: "jueves_tarde"
     }});
 
-    var viernes = await InscriptionOption.count({where: {
-        day: "viernes"
+    var viernes_manana = await InscriptionOption.count({where: {
+        day: "viernes_manana"
+    }});
+    var viernes_tarde = await InscriptionOption.count({where: {
+        day: "viernes_tarde"
     }});
 
-    res.render('pages/escuela-barrial-coilaco-2021', { lunes: lunes, martes: martes, miercoles: miercoles, jueves: jueves, viernes: viernes });
+    res.render('pages/escuela-barrial-coilaco-2021', { lunes_manana: lunes_manana, lunes_tarde: lunes_tarde, martes_manana: martes_manana, martes_tarde: martes_tarde, miercoles_manana: miercoles_manana, miercoles_tarde: miercoles_tarde, jueves_manana: jueves_manana, jueves_tarde: jueves_tarde, viernes_manana: viernes_manana, viernes_tarde: viernes_tarde });
 });
 
 // Subscribers service
